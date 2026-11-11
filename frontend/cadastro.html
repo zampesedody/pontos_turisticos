@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Beyond Borders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="pagina-cadastro">
+
+    <div class="cadastro-container">
+
+        <a href="index.html" class="logo-cadastro">
+            Beyond Borders<span>.</span>
+        </a>
+
+        <div class="cadastro-box">
+
+            <h1>Crie sua conta!</h1>
+
+            <p>
+                Faça parte da Beyond Borders e comece
+                a planejar suas próximas viagens.
+            </p>
+
+            <form id="cadastroForm">
+
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+
+                <label for="email-cadastro">E-mail</label>
+                <input type="email" id="email-cadastro" placeholder="Digite seu e-mail" required>
+
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" placeholder="(00) 00000-0000" required>
+
+                <label for="senha-cadastro">Senha</label>
+                <input type="password" id="senha-cadastro" placeholder="Crie uma senha" minlength="8" required>
+
+                <label for="confirmar-senha">Confirmar senha</label>
+                <input type="password" id="confirmar-senha" placeholder="Digite sua senha novamente" minlength="8" required>
+
+                <div class="termos">
+                    <input type="checkbox" id="termos" required>
+                    <label for="termos">
+                        Aceito os termos de uso e a política de privacidade.
+                    </label>
+                </div>
+
+                <button type="submit">Criar minha conta</button>
+
+            </form>
+
+            <p id="mensagemCadastro"></p>
+
+            <div class="ja-conta">
+                <p>Já possui uma conta?</p>
+                <a href="login.html">Fazer login</a>
+            </div>
+
+            <a href="index.html" class="voltar">
+                ← Voltar para o início
+            </a>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
