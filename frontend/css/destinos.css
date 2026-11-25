@@ -1,3 +1,4 @@
+
 /* PÁGINA DO MAPA */
 
 .pagina-mapa {
@@ -29,6 +30,66 @@
     font-size: 15px;
     color: #777777;
     line-height: 1.6;
+}
+
+/* ==============================================
+   FILTRO DE CATEGORIAS
+   ============================================== */
+
+.filtro-categorias {
+    margin-bottom: 25px;
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #eee5c9;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(100, 80, 30, 0.10);
+}
+
+.filtro-categorias h2 {
+    margin: 0 0 8px;
+    font-size: 21px;
+    color: #292929;
+}
+
+.filtro-categorias > p {
+    margin: 0 0 17px;
+    color: #777777;
+    font-size: 14px;
+}
+
+.opcoes-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.botao-categoria {
+    padding: 10px 17px;
+    border: 1px solid #e4d8ae;
+    border-radius: 25px;
+    background: #fffdf5;
+    color: #5c502e;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-categoria:hover {
+    background: #fceea8;
+    border-color: #d6b94d;
+}
+
+.botao-categoria.ativo {
+    background: #d6b94d;
+    border-color: #d6b94d;
+    color: #292929;
+}
+
+.resultado-filtro {
+    margin: 17px 0 0 !important;
+    font-size: 13px !important;
+    color: #777777;
 }
 
 /* MAPA */
@@ -81,9 +142,7 @@
     color: #333333;
 }
 
-/* ==============================================
-   CADASTRO DE PONTOS TURÍSTICOS NO MAPA
-   ============================================== */
+/* CADASTRO DE PONTOS TURÍSTICOS */
 
 .caixa-cadastro-ponto,
 .lista-pontos-cadastrados {
@@ -295,6 +354,17 @@
     color: #777777;
 }
 
+.categoria-popup-ponto {
+    display: inline-block;
+    margin: 0 0 7px;
+    padding: 4px 9px;
+    border-radius: 15px;
+    background: #fceea8;
+    color: #5c502e;
+    font-size: 11px;
+    font-weight: 700;
+}
+
 .imagem-popup-ponto {
     display: block;
     width: 100%;
@@ -364,6 +434,15 @@
 
     .pagina-mapa #mapa {
         height: 400px;
+    }
+
+    .opcoes-categorias {
+        gap: 8px;
+    }
+
+    .botao-categoria {
+        padding: 9px 12px;
+        font-size: 13px;
     }
 
 }

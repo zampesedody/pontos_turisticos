@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -7,14 +8,10 @@
 
     <title>Pontos Turísticos | Beyond Borders</title>
 
-    <!-- CSS do Leaflet -->
     <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-    <!-- CSS principal do site -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- CSS exclusivo dos destinos -->
     <link rel="stylesheet" href="css/destinos.css">
 </head>
 
@@ -31,10 +28,59 @@
             </p>
         </section>
 
+        <!-- FILTRO DE CATEGORIAS -->
+        <section class="filtro-categorias">
+
+            <h2>Explore por categoria</h2>
+
+            <p>Selecione uma categoria para encontrar pontos turísticos.</p>
+
+            <div class="opcoes-categorias">
+
+                <button type="button" class="botao-categoria ativo"
+                    data-categoria="todos">
+                    Todos
+                </button>
+
+                <button type="button" class="botao-categoria"
+                    data-categoria="Praia">
+                    🏖️ Praia
+                </button>
+
+                <button type="button" class="botao-categoria"
+                    data-categoria="Museu">
+                    🏛️ Museu
+                </button>
+
+                <button type="button" class="botao-categoria"
+                    data-categoria="Parque">
+                    🌳 Parque
+                </button>
+
+                <button type="button" class="botao-categoria"
+                    data-categoria="Gastronomia">
+                    🍽️ Gastronomia
+                </button>
+
+                <button type="button" class="botao-categoria"
+                    data-categoria="sem-categoria">
+                    Sem categoria
+                </button>
+
+            </div>
+
+            <p id="resultadoFiltro" class="resultado-filtro">
+                Exibindo todos os pontos turísticos.
+            </p>
+
+        </section>
+
+        <!-- MAPA -->
         <section class="area-mapa">
             <div id="mapa"></div>
         </section>
 
+        <!-- COORDENADAS -->
         <section class="caixa-coordenadas">
 
             <h2>Localização selecionada</h2>
@@ -102,6 +148,23 @@
                         maxlength="1500"
                         placeholder="Conte um pouco sobre esse lugar...">
                     </textarea>
+
+                </div>
+
+                <!-- NOVO CAMPO: CATEGORIA -->
+                <div class="campo-cadastro-ponto">
+
+                    <label for="categoriaPonto">
+                        Categoria <span>*</span>
+                    </label>
+
+                    <select id="categoriaPonto" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option value="Praia">Praia</option>
+                        <option value="Museu">Museu</option>
+                        <option value="Parque">Parque</option>
+                        <option value="Gastronomia">Gastronomia</option>
+                    </select>
 
                 </div>
 
@@ -184,10 +247,8 @@
 
     </main>
 
-    <!-- Biblioteca Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <!-- JavaScript do mapa e do cadastro -->
     <script src="js/destinos.js"></script>
 
 </body>

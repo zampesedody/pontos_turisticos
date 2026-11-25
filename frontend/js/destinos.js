@@ -1,3 +1,4 @@
+
 // ==============================================
 // MAPA E CADASTRO DE PONTOS TURÍSTICOS
 // BEYOND BORDERS
@@ -6,11 +7,20 @@
 const API_IBGE = 'https://servicodados.ibge.gov.br/api/v1/localidades';
 const CHAVE_PONTOS = 'pontosTuristicos';
 
+// Categorias disponíveis
+const CATEGORIAS = [
+    'Praia',
+    'Museu',
+    'Parque',
+    'Gastronomia'
+];
+
 // Elementos do formulário
 const caixaCadastro = document.getElementById('caixaCadastroPonto');
 const formCadastro = document.getElementById('formCadastroPonto');
 const nomePontoInput = document.getElementById('nomePonto');
 const descricaoPontoInput = document.getElementById('descricaoPonto');
+const categoriaPontoSelect = document.getElementById('categoriaPonto');
 const fotoPontoInput = document.getElementById('fotoPonto');
 const previewFotoPonto = document.getElementById('previewFotoPonto');
 const ufPontoSelect = document.getElementById('ufPonto');
@@ -20,10 +30,16 @@ const avisoCoordenadas = document.getElementById('avisoCoordenadasPonto');
 const secaoPontos = document.getElementById('secaoPontosCadastrados');
 const listaPontos = document.getElementById('listaPontosCadastrados');
 
+// Elementos do filtro
+const botoesCategoria = document.querySelectorAll('.botao-categoria');
+const resultadoFiltro = document.getElementById('resultadoFiltro');
+
 let localizacaoSelecionada = null;
 let marcadorSelecao = null;
 let fotoEmBase64 = '';
+let categoriaAtiva = 'todos';
 
+// Cada marcador fica associado ao ID do seu ponto
 const marcadoresSalvos = [];
 
 // ==============================================
@@ -31,13 +47,19 @@ const marcadoresSalvos = [];
 // ==============================================
 
 function obterUsuarioLogado() {
+
     try {
+
         return JSON.parse(
             sessionStorage.getItem('usuarioLogado') || 'null'
         );
+
     } catch (erro) {
+
         return null;
+
     }
+
 }
 
 // ==============================================
@@ -82,7 +104,6 @@ mapa.on('click', function(evento) {
 
     botaoCadastro.type = 'button';
     botaoCadastro.className = 'botao-popup-cadastrar';
-
     botaoCadastro.textContent = 'Cadastrar ponto turístico aqui';
 
     botaoCadastro.addEventListener('click', abrirFormularioPonto);
@@ -144,6 +165,7 @@ function abrirFormularioPonto() {
     });
 
     nomePontoInput.focus();
+
 }
 
 
@@ -209,6 +231,7 @@ async function carregarEstados() {
         mensagemCadastro.className = 'mensagem-ponto-erro';
 
     }
+
 }
 
 
@@ -226,6 +249,7 @@ ufPontoSelect.addEventListener('change', async function() {
             '<option value="">Selecione primeiro a UF</option>';
 
         return;
+
     }
 
     cidadePontoSelect.innerHTML =
@@ -359,6 +383,7 @@ fotoPontoInput.addEventListener('change', async function() {
         fotoPontoInput.value = '';
 
         return;
+
     }
 
     try {
@@ -406,14 +431,120 @@ function obterPontosSalvos() {
 }
 
 
-// Criar marcador para cada ponto cadastrado.
+// ==============================================
+// FILTRO DE CATEGORIAS
+// ==============================================
+
+function pontoCorrespondeAoFiltro(ponto) {
+
+    if (categoriaAtiva === 'todos') {
+        return true;
+    }
+
+    if (categoriaAtiva === 'sem-categoria') {
+        return !ponto.categoria ||
+            !CATEGORIAS.includes(ponto.categoria);
+    }
+
+    return ponto.categoria === categoriaAtiva;
+
+}
+
+
+// Aplicar filtro aos marcadores e à lista.
+
+function aplicarFiltroCategorias() {
+
+    const pontos = obterPontosSalvos();
+
+    const pontosFiltrados = pontos.filter(
+        pontoCorrespondeAoFiltro
+    );
+
+    // Mostrar ou esconder os marcadores do mapa.
+
+    marcadoresSalvos.forEach(function(registro) {
+
+        const ponto = pontos.find(function(item) {
+            return String(item.id) === String(registro.id);
+        });
+
+        if (!ponto) return;
+
+        const deveMostrar = pontoCorrespondeAoFiltro(ponto);
+
+        if (deveMostrar) {
+
+            if (!mapa.hasLayer(registro.marcador)) {
+                registro.marcador.addTo(mapa);
+            }
+
+        } else {
+
+            if (mapa.hasLayer(registro.marcador)) {
+                mapa.removeLayer(registro.marcador);
+            }
+
+        }
+
+    });
+
+    // Atualizar quantidade de resultados.
+
+    if (categoriaAtiva === 'todos') {
+
+        resultadoFiltro.textContent =
+            `Exibindo todos os ${pontosFiltrados.length} pontos turísticos.`;
+
+    } else {
+
+        resultadoFiltro.textContent =
+            `${pontosFiltrados.length} ponto(s) encontrado(s).`;
+
+    }
+
+    // Atualizar a lista.
+
+    atualizarListaPontos();
+
+}
+
+
+// Clique nos botões das categorias.
+
+botoesCategoria.forEach(function(botao) {
+
+    botao.addEventListener('click', function() {
+
+        categoriaAtiva = botao.dataset.categoria;
+
+        // Remover destaque de todos os botões.
+
+        botoesCategoria.forEach(function(outroBotao) {
+            outroBotao.classList.remove('ativo');
+        });
+
+        // Destacar categoria selecionada.
+
+        botao.classList.add('ativo');
+
+        aplicarFiltroCategorias();
+
+    });
+
+});
+
+
+// ==============================================
+// CRIAR MARCADOR PARA CADA PONTO
+// ==============================================
 
 function adicionarMarcadorPonto(ponto) {
 
     const marcadorPonto = L.marker([
         ponto.latitude,
         ponto.longitude
-    ]).addTo(mapa);
+    ]);
 
     const conteudo = document.createElement('div');
 
@@ -424,6 +555,18 @@ function adicionarMarcadorPonto(ponto) {
     titulo.textContent = ponto.nome;
 
     conteudo.appendChild(titulo);
+
+    if (ponto.categoria) {
+
+        const categoria = document.createElement('span');
+
+        categoria.className = 'categoria-popup-ponto';
+
+        categoria.textContent = ponto.categoria;
+
+        conteudo.appendChild(categoria);
+
+    }
 
     if (ponto.foto) {
 
@@ -466,7 +609,10 @@ function adicionarMarcadorPonto(ponto) {
 
     marcadorPonto.bindPopup(conteudo);
 
-    marcadoresSalvos.push(marcadorPonto);
+    marcadoresSalvos.push({
+        id: ponto.id,
+        marcador: marcadorPonto
+    });
 
 }
 
@@ -477,7 +623,8 @@ function adicionarMarcadorPonto(ponto) {
 
 function atualizarListaPontos() {
 
-    const pontos = obterPontosSalvos();
+    const pontos = obterPontosSalvos()
+        .filter(pontoCorrespondeAoFiltro);
 
     listaPontos.innerHTML = '';
 
@@ -494,6 +641,26 @@ function atualizarListaPontos() {
         nome.textContent = ponto.nome;
 
         item.appendChild(nome);
+
+        // Categoria do ponto.
+
+        if (ponto.categoria) {
+
+            const categoria = document.createElement('span');
+
+            categoria.textContent = 'Categoria: ' + ponto.categoria;
+
+            item.appendChild(categoria);
+
+        } else {
+
+            const categoria = document.createElement('span');
+
+            categoria.textContent = 'Sem categoria';
+
+            item.appendChild(categoria);
+
+        }
 
         const local = [
             ponto.cidade,
@@ -523,17 +690,14 @@ function atualizarListaPontos() {
                 ponto.longitude
             ], 13);
 
-            const marcadorCorrespondente = marcadoresSalvos.find(function(m) {
-
-                const posicao = m.getLatLng();
-
-                return Math.abs(posicao.lat - ponto.latitude) < 0.000001 &&
-                    Math.abs(posicao.lng - ponto.longitude) < 0.000001;
-
-            });
+            const marcadorCorrespondente = marcadoresSalvos.find(
+                function(registro) {
+                    return String(registro.id) === String(ponto.id);
+                }
+            );
 
             if (marcadorCorrespondente) {
-                marcadorCorrespondente.openPopup();
+                marcadorCorrespondente.marcador.openPopup();
             }
 
         });
@@ -547,13 +711,15 @@ function atualizarListaPontos() {
 }
 
 
-// Carregar os pontos que já foram cadastrados.
+// ==============================================
+// CARREGAR PONTOS SALVOS
+// ==============================================
 
 function carregarPontosSalvos() {
 
     obterPontosSalvos().forEach(adicionarMarcadorPonto);
 
-    atualizarListaPontos();
+    aplicarFiltroCategorias();
 
 }
 
@@ -576,6 +742,7 @@ formCadastro.addEventListener('submit', function(evento) {
         mensagemCadastro.className = 'mensagem-ponto-erro';
 
         return;
+
     }
 
     if (!localizacaoSelecionada) {
@@ -586,6 +753,7 @@ formCadastro.addEventListener('submit', function(evento) {
         mensagemCadastro.className = 'mensagem-ponto-erro';
 
         return;
+
     }
 
     const nome = nomePontoInput.value.trim();
@@ -600,6 +768,22 @@ formCadastro.addEventListener('submit', function(evento) {
         nomePontoInput.focus();
 
         return;
+
+    }
+
+    const categoria = categoriaPontoSelect.value;
+
+    if (!CATEGORIAS.includes(categoria)) {
+
+        mensagemCadastro.textContent =
+            'Selecione uma categoria válida para o ponto turístico.';
+
+        mensagemCadastro.className = 'mensagem-ponto-erro';
+
+        categoriaPontoSelect.focus();
+
+        return;
+
     }
 
     const estadoSelecionado =
@@ -612,6 +796,8 @@ formCadastro.addEventListener('submit', function(evento) {
         nome: nome,
 
         descricao: descricaoPontoInput.value.trim(),
+
+        categoria: categoria,
 
         foto: fotoEmBase64,
 
@@ -650,7 +836,7 @@ formCadastro.addEventListener('submit', function(evento) {
 
         adicionarMarcadorPonto(novoPonto);
 
-        atualizarListaPontos();
+        aplicarFiltroCategorias();
 
         mensagemCadastro.textContent =
             'Ponto turístico cadastrado com sucesso! Ele já está marcado no mapa.';
