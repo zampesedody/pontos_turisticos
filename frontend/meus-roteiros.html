@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Roteiros - Beyond Borders</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/meus-roteiros.css">
+</head>
+<body>
+
+    <main class="pagina-roteiros">
+
+        <section class="introducao-roteiros">
+            <h1>Meus Roteiros</h1>
+            <p>Organize seus lugares favoritos e planeje suas próximas aventuras!</p>
+        </section>
+
+        <div id="avisoLogin" class="aviso-login" hidden>
+            <p>Você precisa estar conectado para acessar seus favoritos e roteiros.</p>
+            <a href="login.html">Fazer login</a>
+        </div>
+
+        <div id="conteudoRoteiros" hidden>
+
+            <div class="abas-roteiros">
+                <button class="aba-roteiro ativa" data-aba="favoritos">
+                    ♥ Meus Favoritos
+                </button>
+
+                <button class="aba-roteiro" data-aba="roteiros">
+                    ✈ Meus Roteiros
+                </button>
+
+                <button class="aba-roteiro" data-aba="pontos">
+                    + Explorar Pontos
+                </button>
+            </div>
+
+            <section id="secaoFavoritos" class="secao-roteiro">
+                <h2>Meus lugares favoritos</h2>
+                <p class="descricao-secao">Aqui ficam os pontos turísticos que você salvou.</p>
+                <div id="listaFavoritos" class="lista-pontos"></div>
+            </section>
+
+            <section id="secaoRoteiros" class="secao-roteiro" hidden>
+                <h2>Seus roteiros</h2>
+                <p class="descricao-secao">Crie roteiros e reúna os lugares que deseja visitar.</p>
+
+                <form id="formNovoRoteiro" class="form-novo-roteiro">
+                    <label for="nomeRoteiro">Nome do roteiro</label>
+                    <input
+                        type="text"
+                        id="nomeRoteiro"
+                        placeholder="Ex.: Minha viagem de férias"
+                        maxlength="60"
+                        required
+                    >
+
+                    <label for="descricaoRoteiro">Descrição (opcional)</label>
+                    <textarea
+                        id="descricaoRoteiro"
+                        placeholder="Conte um pouco sobre esse roteiro..."
+                        rows="3"
+                        maxlength="300"
+                    ></textarea>
+
+                    <button type="submit">Criar roteiro</button>
+                </form>
+
+                <div id="listaRoteiros" class="lista-roteiros"></div>
+            </section>
+
+            <section id="secaoPontos" class="secao-roteiro" hidden>
+                <h2>Explorar pontos turísticos</h2>
+                <p class="descricao-secao">
+                    Veja os pontos cadastrados no Beyond Borders e salve os que deseja conhecer.
+                </p>
+                <div id="listaTodosPontos" class="lista-pontos"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="js/meus-roteiros.js"></script>
+</body>
+</html>

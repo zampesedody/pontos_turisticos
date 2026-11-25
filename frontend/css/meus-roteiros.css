@@ -1,0 +1,267 @@
+
+.pagina-roteiros {
+    width: 90%;
+    max-width: 1150px;
+    margin: 45px auto;
+    min-height: 70vh;
+}
+
+.introducao-roteiros {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.introducao-roteiros h1 {
+    color: #292929;
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+}
+
+.introducao-roteiros p,
+.descricao-secao {
+    color: #777;
+    line-height: 1.6;
+}
+
+.aviso-login {
+    background: #fff8e8;
+    border: 1px solid #e8d58a;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+}
+
+.aviso-login a {
+    color: #9b812e;
+    font-weight: bold;
+}
+
+.abas-roteiros {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.aba-roteiro {
+    background: #fff8e8;
+    color: #6e5b20;
+    border: 1px solid #e5d28b;
+    border-radius: 25px;
+    padding: 12px 22px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.aba-roteiro:hover,
+.aba-roteiro.ativa {
+    background: #d6b94d;
+    color: #292929;
+}
+
+.secao-roteiro h2 {
+    color: #292929;
+    margin-bottom: 8px;
+}
+
+.descricao-secao {
+    margin-bottom: 22px;
+}
+
+.lista-pontos,
+.lista-roteiros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.card-ponto-roteiro,
+.card-roteiro {
+    background: #fffdf5;
+    border: 1px solid #eee3bd;
+    border-radius: 15px;
+    padding: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.card-ponto-roteiro img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.sem-foto-roteiro {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f1d9;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    color: #9b812e;
+}
+
+.card-ponto-roteiro h3,
+.card-roteiro h3 {
+    color: #292929;
+    margin: 8px 0;
+}
+
+.card-ponto-roteiro p,
+.card-roteiro p {
+    color: #666;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.localizacao-roteiro {
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.acoes-ponto {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 15px;
+}
+
+.acoes-ponto button,
+.form-novo-roteiro button,
+.botao-remover-ponto,
+.botao-excluir-roteiro {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.botao-favorito {
+    background: #f8e6e6;
+    color: #a33d3d;
+}
+
+.botao-favorito.favoritado {
+    background: #c85c5c;
+    color: white;
+}
+
+.botao-adicionar {
+    background: #d6b94d;
+    color: #292929;
+}
+
+.acoes-ponto button:hover,
+.form-novo-roteiro button:hover,
+.botao-remover-ponto:hover,
+.botao-excluir-roteiro:hover {
+    filter: brightness(0.94);
+}
+
+.acoes-ponto select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #dfd3a8;
+    border-radius: 8px;
+    background: white;
+}
+
+.form-novo-roteiro {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px;
+    background: #fff8e8;
+    border-radius: 13px;
+    border: 1px solid #eee3bd;
+    margin-top: 20px;
+}
+
+.form-novo-roteiro label {
+    font-weight: bold;
+    color: #444;
+}
+
+.form-novo-roteiro input,
+.form-novo-roteiro textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #d8c98f;
+    border-radius: 8px;
+    font: inherit;
+    background: #fffdf5;
+}
+
+.form-novo-roteiro button {
+    background: #d6b94d;
+    color: #292929;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.cabecalho-card-roteiro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.botao-excluir-roteiro,
+.botao-remover-ponto {
+    background: #f4dddd;
+    color: #9b3333;
+}
+
+.pontos-do-roteiro {
+    border-top: 1px solid #eee3bd;
+    margin-top: 15px;
+    padding-top: 12px;
+}
+
+.ponto-no-roteiro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0e9d2;
+}
+
+.ponto-no-roteiro span {
+    color: #444;
+    overflow-wrap: anywhere;
+}
+
+.mensagem-vazia {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #777;
+    background: #fff8e8;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+@media (max-width: 600px) {
+    .pagina-roteiros {
+        width: 92%;
+        margin: 30px auto;
+    }
+
+    .introducao-roteiros h1 {
+        font-size: 1.8rem;
+    }
+
+    .aba-roteiro {
+        width: 100%;
+    }
+}
