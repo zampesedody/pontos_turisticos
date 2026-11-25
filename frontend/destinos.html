@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pontos Turísticos | Beyond Borders</title>
+
+    <!-- CSS do Leaflet -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <!-- CSS principal do site -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- CSS exclusivo dos destinos -->
+    <link rel="stylesheet" href="css/destinos.css">
+</head>
+
+<body>
+
+    <main class="pagina-mapa">
+
+        <section class="introducao-mapa">
+            <h1>Explore os pontos turísticos</h1>
+
+            <p>
+                Encontre lugares incríveis e descubra novos destinos.
+                Clique no mapa para selecionar uma localização e cadastrar um ponto turístico.
+            </p>
+        </section>
+
+        <section class="area-mapa">
+            <div id="mapa"></div>
+        </section>
+
+        <section class="caixa-coordenadas">
+
+            <h2>Localização selecionada</h2>
+
+            <p id="latitude">
+                Latitude: não selecionada
+            </p>
+
+            <p id="longitude">
+                Longitude: não selecionada
+            </p>
+
+        </section>
+
+        <!-- FORMULÁRIO DE CADASTRO -->
+        <section class="caixa-cadastro-ponto" id="caixaCadastroPonto" hidden>
+
+            <div class="cabecalho-cadastro-ponto">
+
+                <div>
+                    <h2>Cadastrar ponto turístico</h2>
+
+                    <p>
+                        Preencha as informações do lugar que você marcou no mapa.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="fechar-cadastro-ponto"
+                    id="fecharCadastroPonto"
+                    aria-label="Fechar formulário">
+                    &times;
+                </button>
+
+            </div>
+
+            <form id="formCadastroPonto">
+
+                <div class="campo-cadastro-ponto campo-nome-ponto">
+
+                    <label for="nomePonto">
+                        Nome do ponto turístico <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nomePonto"
+                        maxlength="120"
+                        placeholder="Ex.: Parque das Águas"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo-cadastro-ponto">
+
+                    <label for="descricaoPonto">
+                        Descrição <small>(opcional)</small>
+                    </label>
+
+                    <textarea
+                        id="descricaoPonto"
+                        rows="4"
+                        maxlength="1500"
+                        placeholder="Conte um pouco sobre esse lugar...">
+                    </textarea>
+
+                </div>
+
+                <div class="campo-cadastro-ponto">
+
+                    <label for="fotoPonto">
+                        Foto <small>(opcional)</small>
+                    </label>
+
+                    <input
+                        type="file"
+                        id="fotoPonto"
+                        accept="image/*"
+                    >
+
+                    <img
+                        id="previewFotoPonto"
+                        alt="Prévia da foto selecionada"
+                        hidden
+                    >
+
+                </div>
+
+                <div class="linha-cadastro-ponto">
+
+                    <div class="campo-cadastro-ponto">
+
+                        <label for="ufPonto">Estado (UF)</label>
+
+                        <select id="ufPonto">
+                            <option value="">Selecione um estado</option>
+                        </select>
+
+                    </div>
+
+                    <div class="campo-cadastro-ponto">
+
+                        <label for="cidadePonto">Cidade</label>
+
+                        <select id="cidadePonto" disabled>
+                            <option value="">Selecione primeiro a UF</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <p
+                    class="aviso-coordenadas-ponto"
+                    id="avisoCoordenadasPonto">
+                </p>
+
+                <button
+                    type="submit"
+                    class="botao-salvar-ponto">
+                    Salvar ponto turístico
+                </button>
+
+                <p
+                    id="mensagemCadastroPonto"
+                    role="status"
+                    aria-live="polite">
+                </p>
+
+            </form>
+
+        </section>
+
+        <!-- LISTA DE PONTOS CADASTRADOS -->
+        <section
+            class="lista-pontos-cadastrados"
+            id="secaoPontosCadastrados"
+            hidden>
+
+            <h2>Pontos cadastrados</h2>
+
+            <div id="listaPontosCadastrados"></div>
+
+        </section>
+
+    </main>
+
+    <!-- Biblioteca Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- JavaScript do mapa e do cadastro -->
+    <script src="js/destinos.js"></script>
+
+</body>
+</html>

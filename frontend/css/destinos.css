@@ -1,0 +1,383 @@
+/* PÁGINA DO MAPA */
+
+.pagina-mapa {
+    min-height: 100vh;
+    padding: 50px 7%;
+    background: linear-gradient(
+        135deg,
+        #fffdf5,
+        #f8f1d9,
+        #fff8e8
+    );
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+/* TÍTULO */
+
+.introducao-mapa {
+    margin-bottom: 30px;
+}
+
+.introducao-mapa h1 {
+    font-size: 32px;
+    color: #292929;
+    margin-bottom: 12px;
+}
+
+.introducao-mapa p {
+    font-size: 15px;
+    color: #777777;
+    line-height: 1.6;
+}
+
+/* MAPA */
+
+.area-mapa {
+    width: 100%;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #eee5c9;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(100, 80, 30, 0.10);
+}
+
+/* NÃO REMOVA A ALTURA DO MAPA */
+
+.pagina-mapa #mapa {
+    width: 100%;
+    height: 500px;
+    border-radius: 7px;
+    z-index: 1;
+}
+
+/* COORDENADAS */
+
+.caixa-coordenadas {
+    margin-top: 25px;
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #eee5c9;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(100, 80, 30, 0.10);
+}
+
+.caixa-coordenadas h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+    color: #333333;
+}
+
+.caixa-coordenadas p {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 10px;
+}
+
+/* POPUP */
+
+.pagina-mapa .leaflet-popup-content {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+/* ==============================================
+   CADASTRO DE PONTOS TURÍSTICOS NO MAPA
+   ============================================== */
+
+.caixa-cadastro-ponto,
+.lista-pontos-cadastrados {
+    margin-top: 25px;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #eee5c9;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(100, 80, 30, 0.10);
+}
+
+.caixa-cadastro-ponto[hidden],
+.lista-pontos-cadastrados[hidden] {
+    display: none;
+}
+
+/* CABEÇALHO DO FORMULÁRIO */
+
+.cabecalho-cadastro-ponto {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.cabecalho-cadastro-ponto h2,
+.lista-pontos-cadastrados h2 {
+    margin: 0 0 8px;
+    color: #292929;
+    font-size: 22px;
+}
+
+.cabecalho-cadastro-ponto p {
+    margin: 0;
+    color: #777777;
+    line-height: 1.5;
+}
+
+/* BOTÃO FECHAR */
+
+.fechar-cadastro-ponto {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border: 0;
+    border-radius: 50%;
+    background: #f8f1d9;
+    color: #6e5a20;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* FORMULÁRIO */
+
+#formCadastroPonto {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.campo-cadastro-ponto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-cadastro-ponto label {
+    color: #333333;
+    font-weight: 600;
+}
+
+.campo-cadastro-ponto label span {
+    color: #b42318;
+}
+
+.campo-cadastro-ponto label small {
+    color: #888888;
+    font-weight: 400;
+}
+
+.campo-cadastro-ponto input,
+.campo-cadastro-ponto select,
+.campo-cadastro-ponto textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid #ded7c3;
+    border-radius: 7px;
+    background: #fffdf9;
+    color: #333333;
+    font: inherit;
+}
+
+.campo-cadastro-ponto input:focus,
+.campo-cadastro-ponto select:focus,
+.campo-cadastro-ponto textarea:focus {
+    outline: 2px solid rgba(214, 185, 77, 0.35);
+    border-color: #d6b94d;
+}
+
+.campo-cadastro-ponto textarea {
+    resize: vertical;
+}
+
+/* UF E CIDADE */
+
+.linha-cadastro-ponto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+/* PRÉ-VISUALIZAÇÃO DA FOTO */
+
+#previewFotoPonto {
+    max-width: 100%;
+    max-height: 230px;
+    object-fit: contain;
+    align-self: flex-start;
+    border-radius: 8px;
+}
+
+#previewFotoPonto[hidden] {
+    display: none;
+}
+
+/* COORDENADAS DO CADASTRO */
+
+.aviso-coordenadas-ponto {
+    margin: 0;
+    color: #777777;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+/* BOTÕES */
+
+.botao-salvar-ponto,
+.botao-popup-cadastrar {
+    border: 0;
+    border-radius: 7px;
+    background: #d6b94d;
+    color: #292929;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.botao-salvar-ponto {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 15px;
+}
+
+.botao-salvar-ponto:hover,
+.botao-popup-cadastrar:hover {
+    background: #c6a83e;
+}
+
+/* MENSAGENS */
+
+#mensagemCadastroPonto {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.mensagem-ponto-erro {
+    color: #b42318;
+    font-weight: 600;
+}
+
+.mensagem-ponto-sucesso {
+    color: #247a3c;
+    font-weight: 600;
+}
+
+/* POPUP DE CADASTRO NO MAPA */
+
+.popup-cadastro-ponto p {
+    margin: 0 0 9px;
+}
+
+.botao-popup-cadastrar {
+    padding: 9px 11px;
+    font-size: 13px;
+}
+
+/* POPUP DOS PONTOS SALVOS */
+
+.popup-ponto-salvo {
+    max-width: 220px;
+}
+
+.popup-ponto-salvo strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #292929;
+}
+
+.popup-ponto-salvo p {
+    margin: 7px 0;
+    line-height: 1.4;
+}
+
+.popup-ponto-salvo small {
+    color: #777777;
+}
+
+.imagem-popup-ponto {
+    display: block;
+    width: 100%;
+    max-height: 130px;
+    margin: 6px 0;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+/* LISTA DE PONTOS CADASTRADOS */
+
+.lista-pontos-cadastrados h2 {
+    margin-bottom: 16px;
+}
+
+#listaPontosCadastrados {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(190px, 1fr)
+    );
+    gap: 12px;
+}
+
+.item-ponto-cadastrado {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid #eee5c9;
+    border-radius: 8px;
+    background: #fffdf9;
+}
+
+.item-ponto-cadastrado strong {
+    color: #333333;
+}
+
+.item-ponto-cadastrado span {
+    color: #777777;
+    font-size: 13px;
+}
+
+.item-ponto-cadastrado button {
+    margin-top: 3px;
+    padding: 8px 11px;
+    border: 0;
+    border-radius: 6px;
+    background: #fceea8;
+    color: #292929;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 750px) {
+
+    .pagina-mapa {
+        padding: 35px 4%;
+    }
+
+    .introducao-mapa h1 {
+        font-size: 25px;
+    }
+
+    .pagina-mapa #mapa {
+        height: 400px;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .caixa-cadastro-ponto,
+    .lista-pontos-cadastrados {
+        padding: 20px;
+    }
+
+    .linha-cadastro-ponto {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+}

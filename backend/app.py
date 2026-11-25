@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from urllib.parse import quote_plus
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
 from sqlalchemy import text
@@ -12,7 +12,16 @@ from database import db
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
-app = Flask(__name__)
+# Caminho da pasta frontend
+FRONTEND_DIR = BASE_DIR.parent / "frontend"
+
+app = Flask(
+    __name__,
+    template_folder=str(FRONTEND_DIR),
+    static_folder=str(FRONTEND_DIR),
+    static_url_path="/static"
+)
+
 CORS(app)
 
 host = os.getenv("DB_HOST")
@@ -42,6 +51,10 @@ db.init_app(app)
 @app.route("/")
 def inicio():
     return "TESTE NOVO - ESTOU NO APP.PY CERTO!"
+
+@app.route("/destinos")
+def destinos():
+    return render_template("destinos.html")
 
 @app.route("/teste-banco")
 def teste_banco():

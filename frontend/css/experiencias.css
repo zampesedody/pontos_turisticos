@@ -1,0 +1,432 @@
+/* ==============================================
+   PÁGINA DE EXPERIÊNCIAS
+   BEYOND BORDERS
+   ============================================== */
+
+.pagina-experiencias {
+    min-height: 100vh;
+    padding: 50px 7%;
+    background: linear-gradient(
+        135deg,
+        #fffdf5,
+        #f8f1d9,
+        #fff8e8
+    );
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+/* INTRODUÇÃO */
+
+.introducao-experiencias {
+    max-width: 850px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.introducao-experiencias h1 {
+    margin-bottom: 15px;
+    color: #292929;
+    font-size: 36px;
+}
+
+.introducao-experiencias p {
+    color: #777777;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* AVISO DE LOGIN */
+
+.aviso-login {
+    max-width: 850px;
+    margin: 0 auto 30px;
+    padding: 18px 22px;
+    background: #fff8e8;
+    border: 1px solid #e8d99f;
+    border-radius: 9px;
+    text-align: center;
+}
+
+.aviso-login[hidden] {
+    display: none;
+}
+
+.aviso-login p {
+    margin: 0 0 12px;
+    color: #66582b;
+    line-height: 1.5;
+}
+
+.aviso-login a {
+    color: #8b7126;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* TÍTULO DA LISTA */
+
+.conteudo-experiencias {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.titulo-lista-experiencias {
+    margin-bottom: 25px;
+}
+
+.titulo-lista-experiencias h2 {
+    margin-bottom: 8px;
+    color: #292929;
+    font-size: 24px;
+}
+
+.titulo-lista-experiencias p {
+    color: #777777;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* LISTA DE PONTOS */
+
+.lista-experiencias {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* CARTÃO DE CADA PONTO */
+
+.card-experiencia {
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #eee5c9;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(100, 80, 30, 0.10);
+}
+
+/* INFORMAÇÕES DO PONTO */
+
+.informacoes-ponto {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    margin-bottom: 20px;
+}
+
+.foto-ponto-experiencia {
+    width: 190px;
+    height: 145px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 9px;
+    background: #f8f1d9;
+}
+
+.sem-foto-ponto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    height: 145px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #f8f1d9;
+    color: #927c39;
+    font-size: 13px;
+    text-align: center;
+}
+
+.dados-ponto {
+    flex: 1;
+    min-width: 0;
+}
+
+.dados-ponto h3 {
+    margin: 0 0 8px;
+    color: #292929;
+    font-size: 21px;
+}
+
+.localizacao-ponto {
+    margin-bottom: 10px;
+    color: #8b7126;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.descricao-ponto-experiencia {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+/* MÉDIA DE AVALIAÇÕES */
+
+.resumo-avaliacoes {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px 0;
+    border-top: 1px solid #eee8d7;
+    border-bottom: 1px solid #eee8d7;
+}
+
+.estrelas-media {
+    color: #d6b94d;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+.nota-media {
+    color: #333333;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.quantidade-avaliacoes {
+    color: #888888;
+    font-size: 13px;
+}
+
+/* FORMULÁRIO DE AVALIAÇÃO */
+
+.formulario-avaliacao {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fffdf5;
+    border: 1px solid #eee5c9;
+    border-radius: 9px;
+}
+
+.formulario-avaliacao h4 {
+    margin: 0 0 15px;
+    color: #333333;
+    font-size: 17px;
+}
+
+.campo-nota-avaliacao {
+    margin-bottom: 15px;
+}
+
+.campo-nota-avaliacao label,
+.campo-comentario-avaliacao label {
+    display: block;
+    margin-bottom: 9px;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ESTRELAS CLICÁVEIS */
+
+.selecao-estrelas {
+    display: flex;
+    gap: 5px;
+}
+
+.botao-estrela {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #d5d0c1;
+    font-size: 32px;
+    cursor: pointer;
+    transition: transform 0.15s, color 0.15s;
+}
+
+.botao-estrela:hover {
+    transform: scale(1.15);
+}
+
+.botao-estrela.selecionada {
+    color: #d6b94d;
+}
+
+/* COMENTÁRIO */
+
+.campo-comentario-avaliacao textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 90px;
+    padding: 12px;
+    border: 1px solid #ded7c3;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #333333;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.campo-comentario-avaliacao textarea:focus {
+    outline: 2px solid rgba(214, 185, 77, 0.35);
+    border-color: #d6b94d;
+}
+
+/* BOTÃO ENVIAR */
+
+.botao-enviar-avaliacao {
+    margin-top: 14px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    background: #d6b94d;
+    color: #292929;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.botao-enviar-avaliacao:hover {
+    background: #c6a83e;
+}
+
+.mensagem-avaliacao {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.mensagem-avaliacao.erro {
+    color: #b42318;
+}
+
+.mensagem-avaliacao.sucesso {
+    color: #247a3c;
+}
+
+/* AVALIAÇÕES PUBLICADAS */
+
+.titulo-avaliacoes-publicadas {
+    margin: 25px 0 14px;
+    color: #333333;
+    font-size: 17px;
+}
+
+.lista-avaliacoes-publicadas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-avaliacao {
+    padding: 15px;
+    border-left: 3px solid #d6b94d;
+    border-radius: 0 7px 7px 0;
+    background: #fffdf9;
+}
+
+.cabecalho-avaliacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 7px;
+}
+
+.nome-avaliador {
+    color: #333333;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.estrelas-avaliacao-publicada {
+    color: #d6b94d;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.comentario-publicado {
+    margin: 0;
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.data-avaliacao {
+    display: block;
+    margin-top: 8px;
+    color: #999999;
+    font-size: 11px;
+}
+
+/* AVISO DE NENHUMA AVALIAÇÃO */
+
+.sem-avaliacoes {
+    color: #888888;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* MENSAGEM QUANDO NÃO HÁ PONTOS */
+
+.mensagem-sem-pontos {
+    padding: 40px 20px;
+    background: #ffffff;
+    border: 1px solid #eee5c9;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.mensagem-sem-pontos[hidden] {
+    display: none;
+}
+
+.mensagem-sem-pontos h3 {
+    color: #333333;
+    font-size: 20px;
+}
+
+.mensagem-sem-pontos p {
+    margin: 10px auto 20px;
+    color: #777777;
+    line-height: 1.6;
+}
+
+.mensagem-sem-pontos a {
+    display: inline-block;
+    padding: 11px 18px;
+    border-radius: 7px;
+    background: #d6b94d;
+    color: #292929;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+
+    .pagina-experiencias {
+        padding: 35px 4%;
+    }
+
+    .introducao-experiencias h1 {
+        font-size: 29px;
+    }
+
+    .informacoes-ponto {
+        flex-direction: column;
+    }
+
+    .foto-ponto-experiencia,
+    .sem-foto-ponto {
+        width: 100%;
+        height: 190px;
+    }
+
+    .card-experiencia {
+        padding: 18px;
+    }
+
+    .formulario-avaliacao {
+        padding: 15px;
+    }
+
+}
