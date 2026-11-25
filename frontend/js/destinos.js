@@ -274,8 +274,11 @@ ufPontoSelect.addEventListener('change', async function() {
 
             const opcao = document.createElement('option');
 
-            opcao.value = cidade.nome;
-            opcao.textContent = cidade.nome;
+             opcao.value = cidade.nome;
+             opcao.textContent = cidade.nome;
+
+            // Guardar o código oficial do município no IBGE.
+            opcao.dataset.codigoIbge = cidade.id;
 
             cidadePontoSelect.appendChild(opcao);
 
@@ -811,6 +814,10 @@ formCadastro.addEventListener('submit', function(evento) {
 
         cidade: cidadePontoSelect.value || '',
 
+        codigoIBGE: cidadePontoSelect.selectedOptions[0]?.dataset.codigoIbge || '',
+
+        status: 'pendente',
+
         latitude: localizacaoSelecionada.latitude,
 
         longitude: localizacaoSelecionada.longitude,
@@ -825,21 +832,34 @@ formCadastro.addEventListener('submit', function(evento) {
 
     try {
 
-        const pontos = obterPontosSalvos();
+        // Verificar se o banco simulado foi carregado.
+      if (!window.BeyondBordersDB) {
+    throw new Error('O banco simulado não foi carregado.');
+     }
 
-        pontos.push(novoPonto);
+// Salvar o ponto no banco simulado.
+const pontoSalvo = BeyondBordersDB.pontos.salvar(novoPonto);
 
-        localStorage.setItem(
-            CHAVE_PONTOS,
-            JSON.stringify(pontos)
-        );
+if (!pontoSalvo) {
+    throw new Error('Não foi possível salvar o ponto no banco simulado.');
+}
 
+// Manter uma cópia no armazenamento antigo
+// para preservar a compatibilidade com as outras páginas.
+const pontos = obterPontosSalvos();
+
+pontos.push(pontoSalvo);
+
+localStorage.setItem(
+    CHAVE_PONTOS,
+    JSON.stringify(pontos)
+);
         adicionarMarcadorPonto(novoPonto);
 
         aplicarFiltroCategorias();
 
         mensagemCadastro.textContent =
-            'Ponto turístico cadastrado com sucesso! Ele já está marcado no mapa.';
+            'Ponto turístico enviado para cadastro! Ele está aguardando aprovação.';
 
         mensagemCadastro.className = 'mensagem-ponto-sucesso';
 
